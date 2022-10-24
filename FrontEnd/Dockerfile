@@ -1,6 +1,6 @@
 FROM node:latest
 
-WORKDIR /vue_app
+WORKDIR /FrontEnd
 COPY package*.json ./
 RUN npm install
 
