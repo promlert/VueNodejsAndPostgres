@@ -1,20 +1,20 @@
 version: '3'
 services:
-  vue:
+  frontend:
     build: ./FrontEnd
     # image: vueapp:0.0.1
     container_name: "vue_app_container"
     ports:
       - "8080:8080"
     networks:
-      - db_postgres
+      - app-network
   backend:
     build: ./BackEndApi
     container_name: "backend_app_container"
     ports:
       - "3000:3000"
     networks:
-      - db_postgres
+      - app-network
 networks:
-  db_postgres:
+  app-network:
     external: true

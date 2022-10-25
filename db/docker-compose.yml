@@ -1,0 +1,60 @@
+
+services:
+  postgres:
+    container_name: postgres_container
+    image: postgres:14
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
+      PGDATA: /data/postgres
+    volumes:
+       - postgres:/data/postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - postgres_net
+    restart: unless-stopped
+  
+  pgadmin:
+    container_name: pgadmin_container
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    volumes:
+       - pgadmin:/var/lib/pgadmin
+       - pgadmin:/var/lib/pgadmin/storage
+
+    ports:
+      - "${PGADMIN_PORT:-5050}:80"
+    networks:
+      - postgres_net
+    restart: unless-stopped
+  # rabbitmq3:
+  #   container_name: "rabbitmq"
+  #   image: rabbitmq:3-management
+  #   environment:
+  #     - RABBITMQ_DEFAULT_USER=rabitmq
+  #     - RABBITMQ_DEFAULT_PASS=rbpassword
+  #   ports:
+  #     - '4369:4369'
+  #     - '5551:5551'
+  #     - '5552:5552'
+  #     - '5672:5672'
+  #     - '25672:25672'
+  #     - '15672:15672'
+  #   volumes:
+  #     - 'rabbitmq_data:/bitnami/rabbitmq/mnesia'
+  #   networks:
+  #     - postgres
+  #   restart: unless-stopped
+networks:
+   postgres_net:
+    name: app-network
+    driver: bridge
+
+volumes:
+    postgres:
+    pgadmin:
+  #  rabbitmq_data:
