@@ -4,11 +4,11 @@
         <form>
             <div class="form-group">
                 <label for="name">Name</label>
-                <input type="text" class="form-control" id="name" required v-model="currentCar.name" name="name" />
+                <input type="text" class="form-control edit-form" id="name" required v-model="currentCar.name" name="name" />
             </div>
             <div class="form-group">
                 <label for="price">Price</label>
-                <input type="text" class="form-control" id="price" required v-model="currentCar.price" name="price" />
+                <input type="text" class="form-control edit-form" id="price" required v-model="currentCar.price" name="price" />
             </div>
             <button type="button" class="badge badge-danger mr-2" @click="deleteCar">
                 Delete

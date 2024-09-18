@@ -1,4 +1,4 @@
-import { createWebHistory, createRouter } from "vue-router";
+import { createRouter, createWebHistory } from "vue-router";
 import Home from "./components/Home";
 import Login from "./components/Login";
 import Register from "./components/Register";
@@ -8,22 +8,22 @@ const BoardAdmin = () => import("./components/BoardAdmin")
 const BoardModerator = () => import("./components/BoardModerator")
 const BoardUser = () => import("./components/BoardUser")
 const routes =  [
-    // {
-    //   path: "/",
-    //   alias: "/cars",
-    //   name: "carslist",
-    //   component: () => import("./components/CarsList")
-    // },
-    // {
-    //   path: "/car/:id",
-    //   name: "car-details",
-    //   component: () => import("./components/Car")
-    // },
-    // {
-    //   path: "/add",
-    //   name: "add",
-    //   component: () => import("./components/Addcar")
-    // }
+    {
+      path: "/",
+      alias: "/cars",
+      name: "carslist",
+      component: () => import("./components/CarsList")
+    },
+    {
+      path: "/car/:id",
+      name: "car-details",
+      component: () => import("./components/Car")
+    },
+    {
+      path: "/add",
+      name: "add",
+      component: () => import("./components/Addcar")
+    },
 
     {
       path: "/",

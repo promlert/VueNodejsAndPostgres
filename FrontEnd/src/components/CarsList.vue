@@ -71,7 +71,7 @@ export default {
     publishedMessage() {
       // `this` points to the component instance
      // this.name = 'sample';
-      return "Test"+this.name;
+      return this.name;
     }
   },
   methods: {

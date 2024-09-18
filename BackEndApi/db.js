@@ -1,7 +1,7 @@
 const pg = require('pg');
 
 var config = {
-     host:  'pgadmin_container',
+     host:  'postgres_container',
     user:  'postgres',
     password: 'changeme',
     database: 'testdb'

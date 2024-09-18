@@ -23,7 +23,8 @@ const db = {};
 
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
-
+//create table
+//db.cars = require("../models/cars.model.js")(sequelize, Sequelize);
 db.user = require("../models/user.model.js")(sequelize, Sequelize);
 db.role = require("../models/role.model.js")(sequelize, Sequelize);
 //add  refreash token
