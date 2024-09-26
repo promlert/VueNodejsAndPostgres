@@ -8,7 +8,8 @@
             </div>
             <div class="form-group">
                 <label for="price">Price</label>
-                <input type="text" class="form-control edit-form" id="price" required v-model="currentCar.price" name="price" />
+                <vue-number v-model="currentCar.price" class="form-control edit-form" required v-bind="number" name="price"></vue-number> 
+                <!-- <input type="text" class="form-control edit-form" id="price" required v-model="currentCar.price" name="price" /> -->
             </div>
             <button type="button" class="badge badge-danger mr-2" @click="deleteCar">
                 Delete
@@ -26,14 +27,25 @@
     </div>
 </template>
 <script>
+import { component as VueNumber } from '@coders-tm/vue-number-format';
 import CarsDataService from "../services/CarsDataService";
 export default {
     name: "detail-cars",
     data() {
         return {
             currentCar: null,
-            message: ''
+            message: '',
+            number: {
+            decimal: '.',
+            separator: ',',
+            prefix: '',
+            precision: 2,
+            masked: false,
+            },
         }
+    },
+    components: {
+      VueNumber,
     },
     methods: {
         getCar(id) {

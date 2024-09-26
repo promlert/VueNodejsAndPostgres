@@ -7,7 +7,7 @@
             </div>
             <div class="form-group">
                 <label for="price">Price</label>
-                <input type="text" class="form-control" id="price" required v-model="car.price" name="price" />
+                <vue-number v-model="car.price" class="form-control edit-form" required v-bind="number" name="price"></vue-number> 
             </div>
             <button @click="saveCar" class="btn btn-success">Submit</button>
         </div>
@@ -18,6 +18,7 @@
     </div>
 </template>
 <script>
+import { component as VueNumber } from '@coders-tm/vue-number-format';
 import CarsDataService from "../services/CarsDataService";
 export default {
     name: "add-cars",
@@ -26,10 +27,20 @@ export default {
             car: {
                 id: null,
                 name: "",
-                price: ""
+                price: 0.0
+            },
+            number: {
+            decimal: '.',
+            separator: ',',
+            prefix: '',
+            precision: 2,
+            masked: false,
             },
             submitted: false
         }
+    }, 
+    components: {
+      VueNumber,
     },
     methods: {
         saveCar() {
