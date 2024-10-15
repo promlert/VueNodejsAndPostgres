@@ -9,7 +9,7 @@ const BoardModerator = () => import("./components/BoardModerator")
 const BoardUser = () => import("./components/BoardUser")
 const routes =  [
     {
-      path: "/",
+      path: "/cars",
       alias: "/cars",
       name: "carslist",
       component: () => import("./components/CarsList")
@@ -24,7 +24,6 @@ const routes =  [
       name: "add",
       component: () => import("./components/Addcar")
     },
-
     {
       path: "/",
       name: "home",

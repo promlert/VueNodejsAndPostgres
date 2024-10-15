@@ -14,7 +14,9 @@
         <div v-else>
       <h4>You submitted successfully!</h4>
       <button class="btn btn-success" @click="newCar">Add</button>
+     
     </div>
+    <button class="btn btn-primary" @click="redirect('/cars')">Back</button>
     </div>
 </template>
 <script>
@@ -63,6 +65,9 @@ export default {
         newCar() {
             this.submitted = false;
             this.car = {};
+        },
+        redirect: function(path) {
+            this.$router.push({ path });
         }
     }
 }

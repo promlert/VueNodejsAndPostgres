@@ -18,6 +18,10 @@
             <button type="button" class="badge badge-success" @click="updateCar">
                 Update
             </button>
+
+            <button type="button" class="badge badge-success" @click="redirect('/cars')">
+                Back
+            </button>
         </form>
         <p>{{ message }}</p>
     </div>
@@ -57,6 +61,9 @@ export default {
                 .catch(e => {
                     console.log(e);
                 });
+        },
+        redirect: function(path) {
+            this.$router.push({ path });
         },
         updateCar() {
             CarsDataService.update(this.currentCar)
