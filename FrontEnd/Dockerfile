@@ -7,9 +7,7 @@ RUN mkdir -p /var/log/supervisor && chown -R node:node /var/log/supervisor
 
 WORKDIR /home/www/node
 COPY package*.json ./
-RUN npm install
-
-
+RUN npm i @vue/cli -g
 RUN npm ci --only=production
 
 COPY --chown=node:node . ./

@@ -25,12 +25,12 @@ WORKDIR /app
 
 RUN npm ci --omit=dev
 
-FROM gcr.io/distroless/nodejs20-debian12
+FROM node:20.8.1-bullseye-slim AS runtime
 COPY --from=build-env /app /app
 WORKDIR /app
 
 EXPOSE 3000
-CMD ["server.js"]
+CMD ["node", "server.js"]
 
 
 

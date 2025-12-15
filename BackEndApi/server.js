@@ -1,11 +1,12 @@
 const express = require('express')
 const cors = require('cors');
 const swaggerUi = require('swagger-ui-express');
+require('dotenv').config();
 const app = express()
 var bcrypt = require("bcryptjs");
 const port = process.env.PORT || 3000;
 var corsOptions = {
-  origin: "http://localhost:8080"
+  origin: process.env.CORS_ORIGIN || "http://localhost:8080"
 };
 
 app.use(cors(corsOptions));
@@ -21,9 +22,12 @@ const db = require("./models");
 const Role = db.role;
 const User = db.user;
 // auto create db
-db.sequelize.sync({force: true}).then(() => {
-  console.log('Drop and Resync Db');
-  initial();
+const forceSync = process.env.DB_FORCE_SYNC === 'true';
+db.sequelize.sync({ force: forceSync }).then(() => {
+  console.log(forceSync ? 'Drop and Resync Db' : 'Database synced');
+  if (forceSync) {
+    initial();
+  }
 });
 function initial() {
   Role.create({
@@ -71,6 +75,10 @@ function initial() {
 
 app.get('/', (req, res) => {
   res.send('Hello World')
+})
+
+app.get('/healthz', (req, res) => {
+  res.json({ status: 'ok' })
 })
 
 
