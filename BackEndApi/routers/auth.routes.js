@@ -11,13 +11,14 @@ module.exports = function(app) {
   });
 
   app.post(
-    "/api/auth/signup",
-    [
+    "/api/auth/signup" // #swagger.tags = ['Api']
+    ,[
       verifySignUp.checkDuplicateUsernameOrEmail,
       verifySignUp.checkRolesExisted
     ],
     controller.signup
   );
 
-  app.post("/api/auth/signin", controller.signin);
+  app.post("/api/auth/signin" // #swagger.tags = ['Api']
+    , controller.signin);
 };

@@ -5,13 +5,24 @@
     "title": "REST API",
     "description": ""
   },
-  "host": "localhost:3001",
+  "host": "localhost:3000",
   "basePath": "/",
   "schemes": [
     "http"
   ],
   "paths": {
     "/": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/healthz": {
       "get": {
         "description": "",
         "parameters": [],
@@ -196,6 +207,9 @@
     },
     "/api/auth/signup": {
       "post": {
+        "tags": [
+          "Api"
+        ],
         "description": "",
         "parameters": [
           {
@@ -235,6 +249,9 @@
     },
     "/api/auth/signin": {
       "post": {
+        "tags": [
+          "Api"
+        ],
         "description": "",
         "parameters": [
           {
@@ -271,6 +288,9 @@
     },
     "/api/test/all": {
       "get": {
+        "tags": [
+          "Api"
+        ],
         "description": "",
         "parameters": [],
         "responses": {
@@ -282,6 +302,9 @@
     },
     "/api/test/user": {
       "get": {
+        "tags": [
+          "Api"
+        ],
         "description": "",
         "parameters": [
           {
@@ -293,9 +316,6 @@
         "responses": {
           "200": {
             "description": "OK"
-          },
-          "401": {
-            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden"
@@ -305,6 +325,9 @@
     },
     "/api/test/mod": {
       "get": {
+        "tags": [
+          "Api"
+        ],
         "description": "",
         "parameters": [
           {
@@ -316,9 +339,6 @@
         "responses": {
           "200": {
             "description": "OK"
-          },
-          "401": {
-            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden"
@@ -328,6 +348,9 @@
     },
     "/api/test/admin": {
       "get": {
+        "tags": [
+          "Api"
+        ],
         "description": "",
         "parameters": [
           {
@@ -340,13 +363,19 @@
           "200": {
             "description": "OK"
           },
-          "401": {
-            "description": "Unauthorized"
-          },
           "403": {
             "description": "Forbidden"
           }
         }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "AccessTokenAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "x-access-token"
       }
     }
   }

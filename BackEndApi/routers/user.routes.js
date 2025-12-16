@@ -9,24 +9,25 @@ module.exports = function(app) {
     );
     next();
   });
-
-  app.get("/api/test/all", controller.allAccess);
-
+    
+  app.get("/api/test/all" // #swagger.tags = ['Api']
+      , controller.allAccess);
+   
   app.get(
-    "/api/test/user",
-    [authJwt.verifyToken],
+    "/api/test/user" // #swagger.tags = ['Api']
+    ,[authJwt.verifyToken],
     controller.userBoard
   );
-
+   
   app.get(
-    "/api/test/mod",
-    [authJwt.verifyToken, authJwt.isModerator],
+    "/api/test/mod" // #swagger.tags = ['Api']
+    ,[authJwt.verifyToken, authJwt.isModerator],
     controller.moderatorBoard
   );
-
+    
   app.get(
-    "/api/test/admin",
-    [authJwt.verifyToken, authJwt.isAdmin],
+    "/api/test/admin" // #swagger.tags = ['Api']
+    ,[authJwt.verifyToken, authJwt.isAdmin],
     controller.adminBoard
   );
 };
