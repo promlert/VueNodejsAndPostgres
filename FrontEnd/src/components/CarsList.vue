@@ -41,7 +41,7 @@
           </div>
          
   
-          <router-link :to="'/car/' + currentCar.id" class="badge badge-warning">Edit</router-link>
+          <router-link :to="'/car/' + currentCar.id" class="btn btn-warning">Edit</router-link>
         </div>
         <div v-else>
           <br />

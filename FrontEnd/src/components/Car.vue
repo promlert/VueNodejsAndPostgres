@@ -11,15 +11,15 @@
                 <vue-number v-model="currentCar.price" class="form-control edit-form" required v-bind="number" name="price"></vue-number> 
                 <!-- <input type="text" class="form-control edit-form" id="price" required v-model="currentCar.price" name="price" /> -->
             </div>
-            <button type="button" class="badge badge-danger mr-2" @click="deleteCar">
+            <button type="button" class="btn btn-danger mr-2" @click="deleteCar">
                 Delete
             </button>
 
-            <button type="button" class="badge badge-success" @click="updateCar">
+            <button type="button" class="btn btn-primary" @click="updateCar">
                 Update
             </button>
 
-            <button type="button" class="badge badge-success" @click="redirect('/cars')">
+            <button type="button" class="btn btn-info" @click="redirect('/cars')">
                 Back
             </button>
         </form>
