@@ -16,13 +16,13 @@
           <router-link to="/mod" class="nav-link">Moderator Board</router-link>
        
         </li>
-        <li class="nav-item dropdown" v-if="showModeratorBoard">
+        <li class="nav-item dropdown" >
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Dropdown
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <li><a class="dropdown-item" href="#">Car</a></li>
+            <li><a class="dropdown-item" href="/cars">Car</a></li>
             <li><a class="dropdown-item" href="#">Another action</a></li>
           </ul>
         </li>
