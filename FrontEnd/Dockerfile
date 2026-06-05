@@ -1,4 +1,4 @@
-FROM node:20.8.1-bullseye-slim
+FROM node:22.17.0-bullseye-slim
 #FROM gcr.io/distroless/nodejs22-debian12
 #WORKDIR /FrontEnd
 RUN mkdir -p /home/www/node/node_modules && chown -R node:node /home/www/node

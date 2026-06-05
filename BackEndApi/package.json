@@ -18,9 +18,10 @@
     "pg": "^8.8.0",
     "pg-hstore": "^2.3.4",
     "ramda": "^0.28.0",
-    "sequelize": "^6.24.0",
+    "sequelize": "^6.37.8",
     "swagger-jsdoc": "^6.2.8",
-    "swagger-ui-express": "^4.6.3"
+    "swagger-ui-express": "^4.6.3",
+    "uuid": "^14.0.0"
   },
   "devDependencies": {
     "swagger-autogen": "^2.21.8"
