@@ -16,7 +16,7 @@
           <router-link to="/mod" class="nav-link">Moderator Board</router-link>
        
         </li>
-        <li v-if="showModeratorBoard" class="nav-item">
+        <li class="nav-item">
           <router-link to="/cars" class="nav-link">Car List</router-link>
        
         </li>
