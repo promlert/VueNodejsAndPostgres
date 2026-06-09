@@ -16,15 +16,9 @@
           <router-link to="/mod" class="nav-link">Moderator Board</router-link>
        
         </li>
-        <li class="nav-item dropdown" >
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
-            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Dropdown
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <li><a class="dropdown-item" href="/cars">Car</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-          </ul>
+        <li v-if="showModeratorBoard" class="nav-item">
+          <router-link to="/cars" class="nav-link">Car List</router-link>
+       
         </li>
         <li class="nav-item">
           <router-link v-if="currentUser" to="/user" class="nav-link">User</router-link>
