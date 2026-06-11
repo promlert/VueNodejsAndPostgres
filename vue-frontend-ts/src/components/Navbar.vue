@@ -47,7 +47,7 @@
                 </router-link>
               </li>
               <li>
-                <router-link class="dropdown-item" to="/#">
+                <router-link class="dropdown-item" to="/addcar">
                   <font-awesome-icon icon="plus" class="me-2" />
                   Add New Car
                 </router-link>

@@ -49,6 +49,11 @@ const router = createRouter({
       component: () => import('../views/BoardModerator.vue'),
     },
     {
+      path: '/addcar',
+      name: 'new car',
+      component: () => import('../views/Addcar.vue'),
+    },
+    {
       path: '/about',
       name: 'about',
       // route level code-splitting

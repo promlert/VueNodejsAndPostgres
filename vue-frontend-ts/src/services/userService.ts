@@ -1,23 +1,38 @@
-// services/userService.ts
+import { api } from './api'
+import { useAuthStore } from '@/stores/auth';
 
-import { apiFetch } from './api'
+const authStore = useAuthStore();
+authStore.initializeAuth();
+export interface TestResponse {
+  message: string
+}
 
 export const userService = {
+  /**
+   * Get public content (no authentication required)
+   */
   getPublicContent() {
-    return apiFetch<string>('/api/test/all', {
-      skipAuth: true
-    })
+    return api.get<TestResponse>('/test/all')
   },
 
+  /**
+   * Get user board content (requires USER role)
+   */
   getUserBoard() {
-    return apiFetch<string>('/api/test/user')
+    return api.get<TestResponse>('/test/user')
   },
 
+  /**
+   * Get moderator board content (requires MODERATOR role)
+   */
   getModeratorBoard() {
-    return apiFetch<string>('/api/test/mod')
+    return api.get<TestResponse>('/test/mod', authStore.token)
   },
 
+  /**
+   * Get admin board content (requires ADMIN role)
+   */
   getAdminBoard() {
-    return apiFetch<string>('/api/test/admin')
+    return api.get<string>('/api/test/admin', authStore.token)
   }
 }

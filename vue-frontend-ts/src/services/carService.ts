@@ -1,6 +1,6 @@
 // services/carService.ts
 
-import { apiFetch } from './api'
+import { api } from './api'
 
 export interface Car {
   id: number
@@ -14,29 +14,21 @@ export interface CarsResponse {
 
 export const carService = {
   getAll() {
-    return apiFetch<CarsResponse>('/cars')
+    return api.get<CarsResponse>('/cars')
   },
-getById(id: number) {
-  return apiFetch<CarsResponse>(`/cars/${id}`)
+ getById(id: number) {
+  return api.get<CarsResponse>(`/cars/${id}`)
 },
 
   create(car: Omit<Car, 'id'>) {
-    return apiFetch<Car>('/cars', {
-      method: 'POST',
-      body: JSON.stringify(car)
-    })
+    return api.post<Car>('/cars', car)
   },
 
   update(car: Car) {
-    return apiFetch<Car>('/cars', {
-      method: 'PUT',
-      body: JSON.stringify(car)
-    })
+    return api.put<Car>('/cars', car)
   },
 
   delete(id: number) {
-    return apiFetch<void>(`/cars/${id}`, {
-      method: 'DELETE'
-    })
+    return api.delete<void>(`/cars/${id}`)
   }
 }

@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import { ref, computed } from "vue";
-import { apiFetch } from "@/services/api";
+import { api } from "@/services/api";
 
 export interface User {
   id?: number;
@@ -34,18 +34,13 @@ export const useAuthStore = defineStore("auth", () => {
   const user = ref<User | null>(null);
   const loading = ref(false);
   const error = ref<string | null>(null);
-
+  const token = ref<string | null>(localStorage.getItem('token'));
   // getters
   const isLoggedIn = computed(() => !!user.value);
 
   const currentUser = computed(() => user.value);
 
-  const token = computed(() =>
-    user.value?.accessToken ||
-    user.value?.token ||
-    localStorage.getItem("token") ||
-    null
-  );
+
 
   const isAdmin = computed(() =>
     user.value?.roles?.includes("ROLE_ADMIN") ?? false
@@ -56,7 +51,10 @@ export const useAuthStore = defineStore("auth", () => {
     try {
       const saved = localStorage.getItem("user");
       if (!saved) return;
-
+      const savedToken = localStorage.getItem('token');
+      if (savedToken) {
+      token.value = savedToken;
+    }
       user.value = JSON.parse(saved);
       status.value.loggedIn = true;
     } catch {
@@ -70,21 +68,19 @@ export const useAuthStore = defineStore("auth", () => {
     error.value = null;
 
     try {
-      const data = await apiFetch(`${API_AUTH_URL}/signin`, {
-        method: "POST",
-        body: JSON.stringify(credentials),
-        skipAuth: true,
-      });
+      const data = await api.post<User>(`${API_AUTH_URL}/signin`,credentials);
 
       const userData: User = {
         ...data,
         accessToken: data.accessToken || data.token,
       };
-
+      token.value = userData.accessToken || userData.token || null;
+      console.log("Login successful, token:", token.value);
       user.value = userData;
       status.value.loggedIn = true;
 
       localStorage.setItem("user", JSON.stringify(userData));
+
       localStorage.setItem(
         "token",
         userData.accessToken || userData.token || ""
@@ -108,11 +104,7 @@ export const useAuthStore = defineStore("auth", () => {
     error.value = null;
 
     try {
-      const res = await apiFetch(`${API_AUTH_URL}/signup`, {
-        method: "POST",
-        body: JSON.stringify(credentials),
-        skipAuth: true,
-      });
+      const res = await api.post<string>(`${API_AUTH_URL}/signup`,credentials);
 
       return res;
     } catch (err: any) {

@@ -18,9 +18,9 @@ const content = ref('')
 onMounted(async () => {
   try {
 
-    content.value =
-      await userService.getAdminBoard()
-      console.log('Admin board content:', content.value)
+    const res = await userService.getAdminBoard()
+console.log(res) // Should return { message: "Admin Content." }
+    content.value = res || 'Admin Board';
   } catch (error) {
     if (error instanceof Error) {
       content.value = error.message
